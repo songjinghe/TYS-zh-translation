@@ -72,7 +72,11 @@ pre {
 
 code {
     font-family: Inconsolata, Consolas, "DEJA VU SANS MONO", "DROID SANS MONO", Proggy, monospace;
-    font-size: 90%;
+    font-size: 80%;
+    padding: 0 2px 0 2px;
+    border-radius: 4px;
+    border: solid 1px #CC929A ;
+    background-color:  Ivory;
 }
 
 
@@ -86,7 +90,7 @@ a {
 
 
 a:hover {
-	background-color: LightGrey;
+    background-color: LightGrey;
 }
 
 
