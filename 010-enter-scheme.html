@@ -45,28 +45,25 @@ Hello, World!
 "Hello, World!"
 </pre>
     <p>因为这是listener对<code>"Hello, World!"</code>求值的结果。</p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-
-
-
-
-
-
+<p>第二种方式产生的结果除了有双引号以外，两段程序还有一个标志性的区别。第一段(用<code>begin</code>开头的)并没有做任何的运算，而显示的结果是<code>display</code>和<code>newline</code>过程的副作用向标准输出写出来的。第二段程序，<code>&quot;Hello, World!&quot;</code>运算得到的结果在这个情况下和这个字符串本身是一致的。</p>
+<p>以后，我们会使用标记<code>=&gt;</code>来表示运算。就像这样<code>E =&gt; v</code>表示语句段<code>E</code> 运算得到结果值为<code>v</code>。
+例如：</p>
+<pre><code>(begin
+  (display &quot;Hello, World!&quot;)
+  (newline))
+=&gt;</code></pre>
+<p>（没有结果），尽管它有输出<code>Hello, World!</code>到标准输出的副作用。</p>
+<p>而另一个程序段，</p>
+<pre><code>&quot;Hello, World!&quot;
+=&gt;  &quot;Hello, World!&quot;</code></pre>
+<p>在上面两种代码情况下，我们运行完后还是停在命令提示符后。如果要退出Scheme，输入<code>(exit)</code>，这样会退出Scheme命令行。</p>
+<p>Scheme命令行非常便于交互式的测试程序和程序片段。然而这绝不是必须的。你当然可以坚持传统的方式完全在文件中来创建程序，然后用Scheme来执行它们而不使用任何明显的命令行。</p>
+<p>在MzScheme中，例如你可以在操作系统的命令行中这样输</p>
+<pre><code class="lang-scheme">mzscheme –r hello.scm</code></pre>
+<p>这样不需要和Scheme命令行打交道就可以产生问候的结果了。
+在问候结果产生后，mzscheme将会退回操作系统的命令提示。
+这几乎就像是你直接写了<code>echo Hello , World!</code></p>
+<p>你甚至可以把<code>hello.scm</code>当成是一个系统命令来看待(一个内核脚本或批处理文件)，但具体得等到第十六章来讲解。</p>
     <!-- <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script> -->
   </body>
 </html>

@@ -79,7 +79,13 @@ code {
     background-color:  Ivory;
 }
 
-
+pre code {
+    font-family: Inconsolata, Consolas, "DEJA VU SANS MONO", "DROID SANS MONO", Proggy, monospace;
+    font-size: 100%;
+    padding: 0;
+    border: solid 1px Ivory ;
+    background-color:  Ivory;
+}
 a {
     text-decoration: none;
     cursor: crosshair;
