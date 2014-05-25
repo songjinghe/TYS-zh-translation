@@ -5,7 +5,7 @@ Scheme的一个显著标志是它支持跳转或者`nonlocal control`。特别�
 
 ## 13.1 call-with-current-continuation
 
-`call-with-current-continuation`用`current-continuation`来调用它的参数（一个只有一个参数的过程）【在调用时传入参数`current-continuation`，译者注】。这就是这个操作符名字的解释了。但是由于这个名字太长，故通常缩写为`call/cc`。
+`call-with-current-continuation`用`current-continuation`来调用它的参数（一个只有一个参数的过程）【在调用时传入参数`current-continuation`，译者注】。这就是这个操作符名字的解释了。但是由于这个名字太长，故通常缩写为`call/cc`[1]。
 
 一个程序执行到任意一点的当前续延【即`current-continuation`，译者注】是该程序的后半部分【即将要被执行的部分，译者注】。因此在程序：
 ```scheme
@@ -221,3 +221,46 @@ Scheme的一个显著标志是它支持跳转或者`nonlocal control`。特别�
                (resume matcher-cor tree))))
       (resume matcher-cor '()))))
 ```
+现在过程`same-fringe?`可以这样写：
+
+```scheme
+(define same-fringe?
+  (lambda (tree1 tree2)
+    (letrec ((tree-cor-1
+              (make-leaf-gen-coroutine
+               tree1
+               matcher-cor))
+             (tree-cor-2
+              (make-leaf-gen-coroutine
+               tree2
+               matcher-cor))
+             (matcher-cor
+              (make-matcher-coroutine
+               tree-cor-1
+               tree-cor-2)))
+      (matcher-cor 'start-ball-rolling))))
+```
+不幸的是Scheme的`letrec`语句如果想解析它引入的词法变量的相互递归调用，必须得把这个引用包围在一个`lambda`里。所以我们得这么写：
+
+```scheme
+(define same-fringe?
+  (lambda (tree1 tree2)
+    (letrec ((tree-cor-1
+              (make-leaf-gen-coroutine
+               tree1
+               (lambda (v) (matcher-cor v))))
+             (tree-cor-2
+              (make-leaf-gen-coroutine
+               tree2
+               (lambda (v) (matcher-cor v))))
+             (matcher-cor
+              (make-matcher-coroutine
+               (lambda (v) (tree-cor-1 v))
+               (lambda (v) (tree-cor-2 v)))))
+      (matcher-cor 'start-ball-rolling))))
+```
+注意在这个版本的`same-fringe`里完全没有调用`call/cc`的痕迹。宏`coroutine`帮助我们处理了所有的协程。
+
+-----------------
+
+[1]: 如果你的Scheme没有`call/cc`这个缩写，那么在你的初始化代码里加入`(define call/cc call-with-current-continuation)`，这样可以减少敲击键盘造成的手部劳损：）
