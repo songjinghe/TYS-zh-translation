@@ -1,30 +1,54 @@
 第九章 结构
 =============
 
-自然分组的数据被称为结构。它能够使用Scheme复合数据结构如向量和列表来代表结构。例如：我们正在处理与一棵（植物）树相似的分组数据。数据或字段中的单个元素则是：高度，周长，年龄，树叶的形状和树叶的颜色，总计5个字段。这样的数据可以表示为5元向量。这些字段可以利用vvector-ref访问，或使用vector-set修饰。
-尽管如此，我们却非常不希望一直去记忆哪个向量索引对应哪个字段，这将是一个吃力不讨好而且易出错的活动，尤其是在字段包含或排除在时间的过程中。
-因此我们使用Scheme的宏defstruct去定义一个结构数据类型，基本上都是一个向量，但是也是创建结构实例的一个适当套件程序，用来访问或修饰它的字段。因此，我们的树结构应这样定义：
+自然分组的数据被称为结构。我们可以使用Scheme提供的复合数据结构如向量和列表来表示一种“结构”。例如：我们正在处理与一棵（植物）树相似的分组数据。数据（或者叫字段field）中的单个元素包括：高度，周长，年龄，树叶形状和树叶颜色共5个字段。这样的数据可以表示为5元向量。这些字段可以利用vvector-ref访问，或使用vector-set!修改。尽管如此，我们仍然不希望记忆向量索引编号与字段的对于关系，这将是一个费力不讨好而且容易出错的事情，尤其是随着时间的流逝一些字段被加进来，而另一些字段被删掉这中情况。
+
+因此我们使用Scheme的宏`defstruct`去定义一个`结构`，基本上你可以把它当作一种向量，不过它提供了很多方法诸如创建`结构`实例、访问或修改它的字段等等。因此，我们的树结构应这样定义：
+
+```scheme
 (defstruct tree height girth age leaf-shape leaf-color)
-这提供了我们一个名为make-tree的构造过程；每个字段的访问程序，命名为tree.height，tree.girth等等。构造的方法如下：
+```
+
+这样它自动生成了一个名为`make-tree`的构造过程，以及每个字段的访问方法，命名为`tree.height`，`tree.girth`等等。构造方法的使用方法如下：
+
+```scheme
 (define coconut 
   (make-tree 'height 30
              'leaf-shape 'frond
              'age 5))
-这个构造函数的参数以成对的形式出现，字段名紧跟其初始化出现。这些字段能以任意顺序出现，在字段的值没有被定义时也可以忽略。
-访问程序的调用如下所示：
+```
+
+这个构造函数的参数以成对的形式出现，字段名后面紧跟着其初始值。这些字段能以任意顺序出现，或者不出现——如果字段的值没有定义的话。
+
+访问过程的调用如下所示：
+
+```scheme
 (tree.height coconut) =>  30
 (tree.leaf-shape coconut) =>  frond
 (tree.girth coconut) =>  <undefined>
-tree.girth存取程序返回一个未定义的值，因为我们没有为coconut tree指定girth。
-修饰程序的调用如下所示：
+```
+
+`tree.girth`存取程序返回一个未定义的值，因为我们没有为`coconut`这个`tree`结构指定`girth`的值。
+
+修改过程的调用如下所示：
+
+```scheme
 (set!tree.height coconut 40)
 (set!tree.girth coconut 10)
-如果我们现在用相应的访问程序去访问这些字段，我们会得到新的值：
+```
+
+如果我们现在重新调用访问过程去访问这些字段，我们会得到新的值：
+
+```scheme
 (tree.height coconut) =>  40
 (tree.girth coconut) =>  10
+```
 
-9.1 默认初始化
-我们可以在定义构造函数时进行一些初始化的设置，而不是在每个实例中都进行。因此，我们假定leaf-shape和leaf-color在默认情况下分别为frond和green。我们可以在调用make-tree时利用明显的初始化来覆盖这些默认值，或者在创建一个结构实例后使用一个字段修饰器：
+## 9.1 默认初始化
+
+我们可以在定义结构时进行一些初始化的设置，而不是在每个实例中都进行初始化。因此，我们假定`leaf-shape`和`leaf-color`在默认情况下分别为`frond`和`green`。我们可以在调用make-tree时通过显式的初始化来覆盖掉这些默认值，或者在创建一个结构实例后使用上面提到的字段修改过程：
+
+```scheme
 (defstruct tree height girth age
                 (leaf-shape 'frond)
                 (leaf-color 'green))
@@ -49,9 +73,12 @@ tree.girth存取程序返回一个未定义的值，因为我们没有为coconut
 
 (tree.leaf-color plantain) 
 =>  green
+```
 
-9.2 defstruct定义
-宏defstruct的定义如下：
+## 9.2 defstruct定义
+宏`defstruct`的定义如下：
+
+```scheme
 (define-macro defstruct
   (lambda (s . ff)
     (let ((s-s (symbol->string s)) (n (length ff)))
@@ -107,4 +134,4 @@ tree.girth存取程序返回一个未定义的值，因为我们没有为coconut
                (lambda (x)
                  (and (vector? x)
                       (eqv? (vector-ref x 0) ',s))))))))))
-
+```
