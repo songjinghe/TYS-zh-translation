@@ -88,7 +88,7 @@ x  =&gt;  9</code></pre>
 =&gt;  3</code></pre>
 <p>在这个<code>let</code>构结体中，变量<code>cons</code>将它的参数进行相加。而在<code>let</code>结构的外面，<code>cons</code>还是用来创建点对。</p>
 <h2>5.2 fluid-let</h2>
-<p>一个词法变量如果没有被隐藏，在它的作用域内一直都为可见状态。有时候，我们有必要装一个词法变量临时的设置为一个固定的值。为此我们可使用<code>fluid-let</code>结构(<code>fluid-let</code>是一个非标准的特殊结构。可参见8.3，在Scheme中定义fluid-let)。</p>
+<p>一个词法变量如果没有被隐藏，在它的作用域内一直都为可见状态。有时候，我们有必要将一个词法变量临时地设置为一个固定的值。为此我们可使用<code>fluid-let</code>结构(<code>fluid-let</code>是一个非标准的特殊结构。可参见8.3，在Scheme中定义fluid-let)。</p>
 <pre><code class="lang-scheme">(fluid-let ((counter 99))
   (display (bump-counter)) (newline)
   (display (bump-counter)) (newline)
