@@ -11,7 +11,7 @@ A Chinese translation of "teach-yourself-scheme-in-fixnum-days"
 
 ## 说明
 
-大部分Scheme的教程仅仅教授一些Scheme的语法，而对于Scheme的高级特性如`call/cc`绝口不提。有过一些编程经验（特别是Python和Javascript等动态语言）的程序员会觉得《Teach Youself Scheme in Fixnum Days》非常适合他们，因为他们只有看一眼马上就明白了Scheme与其他语言相同的地方，因此对某些絮絮叨叨讲语法等基础知识的教程（如下面的YAST）感到厌烦。而这篇文章主要是在讲Scheme不同于其他编程语言的地方（不包括语法），以及这种不同是如何应用在Scheme的代码中产生神奇的效果的。当然还有一些命令行和网站CGI的东西，也许某些人希望了解一些。
+大部分Scheme的教程仅仅教授一些Scheme的语法，而对于Scheme的高级特性如`call/cc`绝口不提。有过一些编程经验（特别是Python和Javascript等动态语言）的程序员会觉得《Teach Yourself Scheme in Fixnum Days》非常适合他们，因为他们只有看一眼马上就明白了Scheme与其他语言相同的地方，因此对某些絮絮叨叨讲语法等基础知识的教程（如下面的YAST）感到厌烦。而这篇文章主要是在讲Scheme不同于其他编程语言的地方（不包括语法），以及这种不同是如何应用在Scheme的代码中产生神奇的效果的。当然还有一些命令行和网站CGI的东西，也许某些人希望了解一些。
 
 此外，本文还可以作为MzScheme（即现在的Racket语言，之前叫PLT-Scheme）的入门教程。因为本文使用的Scheme实现即是MzScheme。希望更深入学习Racket Lisp但感觉缺乏基础的同志可以看看。
 
