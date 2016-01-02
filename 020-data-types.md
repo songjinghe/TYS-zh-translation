@@ -6,7 +6,7 @@
 ## 2.1 简单数据类型
 
 
-Scheme中的简单包含 `booleans` (布尔类型) , `number`(数字类型), `characters`(字符类型) 和 `symbols`(标识符类型)。
+Scheme中的简单数据类型包含 `booleans` (布尔类型) , `number`(数字类型), `characters`(字符类型) 和 `symbols`(标识符类型)。
 
 ### 2.1.1 Booleans
 
