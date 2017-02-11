@@ -50,7 +50,7 @@
 <pre><code class="lang-scheme">(eqv? 42 42)   =&gt;  #t
 (eqv? 42 #f)   =&gt;  #f
 (eqv? 42 42.0) =&gt;  #f</code></pre>
-<p>不过，如果你知道参与比较的参数全是数字，选择专门用来进行数字相等判断的<code>=</code>会更合适些。(<code>=</code>号运算时会根据需要对参数做类型转换，如<code>(= 42 &quot;42&quot;)</code> 运算结果是 <code>#t</code>)</p>
+<p>不过，如果你知道参与比较的参数全是数字，选择专门用来进行数字相等判断的<code>=</code>会更合适些。(译注：整数与浮点数之间也可以进行比较)</p>
 <pre><code class="lang-scheme">(= 42 42)   =&gt;  #t
 (= 42 #f)   --&gt;ERROR!!!
 (= 42 42.0) =&gt;  #t</code></pre>
@@ -164,7 +164,7 @@ hello
 <p>检测值是否是一个向量的过程是<code>vector?</code>。</p>
 
 <h3>2.2.3 Dotted pairs(点对) 和 lists(列表)</h3>
-<p>点对是将两个任意数值组合成有序数偶的复合类型。点对的第一个数值被称作car，第二值被称作cdr，而将两个值组合成点值对的过程是cons。</p>
+<p>点对是一种复合类型。把两个任意类型的值有序地连起来，即为一个点对。点对的第一个值被称作car，第二个值被称作cdr，而将两个值组合成点值对的过程是cons。</p>
 <pre><code class="lang-scheme">(cons 1 #t)
 =&gt;  (1 . #t)</code></pre>
 <p>点对不能自运算，因此直接以值的方式来定义它们（即不通过调用<code>cons</code>来创建），必须显式的使用引号：</p>
