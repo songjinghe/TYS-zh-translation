@@ -18,7 +18,7 @@
 
 
   <body><h1>第二章 数据类型</h1>
-<p>数据类型是一组相关的值信息集。各种数据类型互相联系，而且它们通常是具有层次关系。Scheme拥有丰富的数据类型：有一些是简单的类型，还有一些复合类型由其它的类型组合而成。</p>
+<p>数据类型是由相互关联的值构成的集合。各种数据类型互相联系，而且它们通常是具有层次关系。Scheme拥有丰富的数据类型：有一些是简单的类型，还有一些复合类型由其它的类型组合而成。</p>
 <h2>2.1 简单数据类型</h2>
 <p>Scheme中的简单包含 <code>booleans</code> (布尔类型) , <code>number</code>(数字类型), <code>characters</code>(字符类型) 和 <code>symbols</code>(标识符类型)。</p>
 <h3>2.1.1 Booleans</h3>
@@ -93,16 +93,16 @@
 <pre><code class="lang-scheme">(char-downcase #\A) =&gt;  #\a
 (char-upcase #\a)   =&gt;  #\A</code></pre>
 <h3>2.1.4 Symbols</h3>
-<p>前面我们所见到的简单数据类型都是自运算的。也就是如果你在命令提示符后输入了任何这些类型的数据，运算后会返回和你输入内容是一样的结果。</p>
+<p>前面我们所见到的简单数据类型的求值结果都是自己。也就是如果你在命令提示符后输入了任何这些类型的数据，运算后会返回和你输入内容是一样的结果。</p>
 <pre><code class="lang-scheme">#t  =&gt;  #t
 42  =&gt;  42
 #\c =&gt;  #\c</code></pre>
-<p>Symbols并没有相同的表现方式。这是因为symbols通常在Scheme程序中被用来当做变量的标识，这样可以运算出变量所承载的值。然而symbols是一种简单数据类型，而且就像characers、numbers以及其它类型数据一样，是Scheme中可以传递的有效值类型。</p>
+<p>Symbols的求值结果与上面的简单数据类型不同。这是因为symbols通常在Scheme程序中被用来当做变量的标识，求值后可以得到变量所代表的值。然而symbols是一种简单数据类型，而且就像characers、numbers以及其它类型数据一样，是Scheme中可以传递的有效值类型。</p>
 <p>创建一个单纯的symbol而非变量时，你需要使用<code>quote</code>过程：</p>
 <pre><code class="lang-scheme">(quote xyz)
 =&gt;  xyz</code></pre>
 <p>因为在Scheme中经常要引用这种类型，我们有一种更简便的方式。表达式 <code>&#39;E</code>和<code>(quote E)</code>在Scheme中是等价的。</p>
-<p>Scheme中symbols由一个字符串来命令。在命名时不要和其它类型数据发生冲突，比如characters 、booleans、numbers 或复合类型。像<code>this-is-a-symbol</code>，<code>i18n</code>，<code>&lt;=&gt;</code>，和<code>$!#*</code>都是symbols，而 <code>16</code>，<code>1+2i</code>，<code>#t</code>，<code>&quot;this-is-a-string&quot;</code>和<code>&#39;(&quot;hello&quot; &quot;world&quot;)</code> 都不是symbols类型数据,<code>&#39;(&quot;hello&quot; &quot;world&quot;)</code> 是一个只包含两个字符串的List。</p>
+<p>Scheme中symbols由一个字符串来命名。在命名时不要和其它类型数据发生冲突，比如characters 、booleans、numbers 或复合类型。像<code>this-is-a-symbol</code>，<code>i18n</code>，<code>&lt;=&gt;</code>，和<code>$!#*</code>都是symbols，而 <code>16</code>，<code>1+2i</code>，<code>#t</code>，<code>&quot;this-is-a-string&quot;</code>和<code>&#39;(&quot;hello&quot; &quot;world&quot;)</code> 都不是symbols类型数据,<code>&#39;(&quot;hello&quot; &quot;world&quot;)</code> 是一个只包含两个字符串的List。</p>
 <p>用来检查symbols类型数据的过程是<code>symbol?</code></p>
 <pre><code class="lang-scheme">(symbol? &#39;xyz) =&gt;  #t
 (symbol? 42)   =&gt;  #f</code></pre>
