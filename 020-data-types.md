@@ -158,7 +158,7 @@ Scheme中字符型数据通过在字符前加 `#\`前缀来表示。像` #\c`就
 ### 2.1.4 Symbols
 
 
-前面我们所见到的简单数据类型都是自运算的。也就是如果你在命令提示符后输入了任何这些类型的数据，运算后会返回和你输入内容是一样的结果。
+前面我们所见到的简单数据类型的求值结果都是自己。也就是如果你在命令提示符后输入了任何这些类型的数据，运算后会返回和你输入内容是一样的结果。
 
 ```scheme
 #t  =>  #t
@@ -166,7 +166,7 @@ Scheme中字符型数据通过在字符前加 `#\`前缀来表示。像` #\c`就
 #\c =>  #\c
 ```
 
-Symbols并没有相同的表现方式。这是因为symbols通常在Scheme程序中被用来当做变量的标识，这样可以运算出变量所承载的值。然而symbols是一种简单数据类型，而且就像characers、numbers以及其它类型数据一样，是Scheme中可以传递的有效值类型。
+Symbols的求值结果与上面的简单数据类型不同。这是因为symbols通常在Scheme程序中被用来当做变量的标识，求值后可以得到变量所代表的值。然而symbols是一种简单数据类型，而且就像characers、numbers以及其它类型数据一样，是Scheme中可以传递的有效值类型。
 
 
 创建一个单纯的symbol而非变量时，你需要使用`quote`过程：
@@ -179,7 +179,7 @@ Symbols并没有相同的表现方式。这是因为symbols通常在Scheme程序
 因为在Scheme中经常要引用这种类型，我们有一种更简便的方式。表达式 `'E`和` (quote E) `在Scheme中是等价的。
 
 
-Scheme中symbols由一个字符串来命令。在命名时不要和其它类型数据发生冲突，比如characters 、booleans、numbers 或复合类型。像` this-is-a-symbol`，`i18n`，` <=>`，和`$!#*`都是symbols，而 `16`，`1+2i`，`#t`，`"this-is-a-string"`和`'("hello" "world")` 都不是symbols类型数据,`'("hello" "world")` 是一个只包含两个字符串的List。
+Scheme中symbols由一个字符串来命名。在命名时不要和其它类型数据发生冲突，比如characters 、booleans、numbers 或复合类型。像` this-is-a-symbol`，`i18n`，` <=>`，和`$!#*`都是symbols，而 `16`，`1+2i`，`#t`，`"this-is-a-string"`和`'("hello" "world")` 都不是symbols类型数据,`'("hello" "world")` 是一个只包含两个字符串的List。
 
 
 用来检查symbols类型数据的过程是`symbol?`
