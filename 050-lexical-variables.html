@@ -71,7 +71,7 @@ x  =&gt;  9</code></pre>
   (+ x y))
 =&gt;  21</code></pre>
 <p>上面代码中，因为局部变量<code>x</code>被赋值为1，而<code>y</code>被赋上了值为20的全局变量<code>x</code>。</p>
-<p>有时候，用<code>let</code>依次的创建局变量非常的方便，如果在初始化区域中可以用先创建的变量来为后创建的变量赋值也会非常方便。<code>let*</code>结构就可以这样做：</p>
+<p>有时候为了方便，希望用<code>let</code>依次创建局部变量，即在初始化区域中用先创建的变量为后创建的变量赋值。<code>let*</code>结构就可以这样做：</p>
 <pre><code class="lang-scheme">(let* ((x 1)
        (y x))
   (+ x y))
